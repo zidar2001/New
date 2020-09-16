@@ -1,15 +1,20 @@
 <template>
 
-  <div>
-    <div class="font-bold uppercase m-6">{{ house.title }}</div>
-    <div class="object-none object-center"> <img :src="'http://homehapp-api.jsteam.gaussx.com/api/media/' + house.cover.id + '/small'" alt="cover"></div>
+  <div class="flex flex-wrap">
+    <div class="text-center">
+    <h1>  {{ house.title }} </h1>
+    </div>
+    <div class="w-full" style="text-align: center"><img class="mx-auto"
+                                                        :src="'http://homehapp-api.jsteam.gaussx.com/api/media/' + house.cover.id + '/small'"
+                                                        alt="cover" v-if="house.cover && house.cover.id"></div>
 
-   <div class="text-center p-5 m-5 border-4 object-center" v-html="house.description"></div>
 
-    <div class="font-bold ">{{ house.address }} {{ house.address2 }}</div>
-    <div class="mt-1">
-      {{house.price}}
-      <span class="text-gray-600 text-sm">/ kn</span>
+    <div class="w-full" v-html="house.description"></div>
+
+    <div class="w-full">{{ house.address }} {{ house.address2 }}</div>
+    <div class="w-full">
+      {{ house.price }}
+      <span class="">/ kn</span>
     </div>
 
   </div>
@@ -21,8 +26,8 @@ import axios from 'axios'
 export default {
   data() {
     return {
-      house: []
-
+      house: {},
+      isHydrated: false
     }
   },
   async mounted() {
@@ -30,6 +35,7 @@ export default {
       let res = await axios.get(`http://homehapp-api.jsteam.gaussx.com/api/home/${this.$route.params.id}`)
       this.house = res.data.data
       console.log(this.house)
+      //this.isHydrated=true
     } catch (
       error
       ) {
@@ -38,3 +44,4 @@ export default {
   }
 }
 </script>
+
