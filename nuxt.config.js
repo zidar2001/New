@@ -4,6 +4,11 @@ export default {
   ** Nuxt rendering mode
   ** See https://nuxtjs.org/api/configuration-mode
   */
+
+    loading: {
+      color: 'red',
+      height: '5px'
+  },
   mode: 'universal',
   /*
   ** Nuxt target
@@ -22,7 +27,8 @@ export default {
       { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Roboto+Slab&family=Work+Sans:wght@300&display=swap' }
     ]
   },
   /*
