@@ -1,7 +1,8 @@
 <template>
-  <div class="pagination text-center bg-transparent  text-blue-700 font-semibold  py-2 px-4 border border-blue-500 rounded">
+  <div class="pagination text-center bg-transparent items-center justify-center sm:rounded-t text-blue-700 font-semibold  py-3 px-4 border-2 border-blue-200 rounded">
     <div class="pages content-center ">
-      <button class="pagination_prev text-center bg-transparent  text-blue-700 font-semibold  py-2 px-4 border border-blue-500 rounded "
+      <button
+        class="pagination_prev text-center bg-transparent  text-blue-700 font-semibold  py-2 px-4 border border-blue-700 rounded "
         v-if="localPage !== 1"
         :class="'pagination_end_page'"
         :disabled="localPage === 1"
@@ -11,7 +12,7 @@
       </button>
       <button
         v-if="localPage !== 1"
-        class="pagination_prev text-center bg-transparent  text-blue-700 font-semibold  py-2 px-4 border border-blue-500 rounded"
+        class="pagination_prev text-center bg-transparent  text-blue-700 font-semibold  py-2 px-4 border border-blue-700 rounded"
         :disabled="localPage === 1"
         @click="setPage(localPage - 1)"
       >
@@ -20,27 +21,29 @@
       <button
         v-for="p in shownNumbers"
         :key="`pagination-page-button-${p}`"
-        :class="p === localPage ? 'bg-grey-900 bg-transparent  text-blue-700 font-semibold  py-2 px-4 border border-blue-500 rounded  ' : ''  "
+        :class="p === localPage ? ' text-blue-700 font-semibold  py-2 px-4 border bg-green-500 border-blue-700 rounded  ' : 'text-blue-700 font-semibold  py-2 px-4 border border-blue-700 rounded '  "
         @click="setPage(p)"
         v-text="p"
       ></button>
       <button
         v-if="localPage !== lastPage"
-        class="pagination_prev text-center bg-transparent  text-blue-700 font-semibold  py-2 px-4 border border-blue-500 rounded"
+        class="pagination_prev text-center bg-transparent  text-blue-700 font-semibold  py-2 px-4 border border-blue-700 rounded"
         :disabled="localPage === lastPage"
         @click="setPage(localPage + 1)"
       >
         Dalje
       </button>
-      <button class="pagination_prev text-center bg-transparent  text-blue-700 font-semibold  py-2 px-4 border border-blue-500 rounded"
+      <button
+        class="pagination_prev text-center bg-transparent  text-blue-700 font-semibold  py-2 px-4 border border-blue-700 rounded"
         v-if="localPage !== lastPage"
         :disabled="localPage === lastPage"
         @click="setPage(lastPage)"
       >
         75
       </button>
-    </div>
   </div>
+  </div>
+
 </template>
 <script>
 export default {
@@ -68,15 +71,17 @@ export default {
 
   computed: {
     shownNumbers() {
-      const LENGTH = 9
-      const { lastPage } = this
+      const LENGTH = 2
+      const {lastPage} = this
       const page = this.localPage
+
 
       const firstPageInSight = page <= Math.floor(LENGTH / 2)
       const lastPageInSight = lastPage - page <= Math.floor(LENGTH / 2)
 
-      const firstNumber = lastPageInSight ? lastPage - LENGTH + 1 : page - 4
-      const lastNumber = firstPageInSight ? LENGTH : page + 4
+
+      const firstNumber = lastPageInSight ? lastPage - LENGTH + 1 : page - 1
+      const lastNumber = firstPageInSight ? LENGTH : page + 1
 
       const first = Math.max(1, firstNumber)
       const last = Math.min(lastPage, lastNumber)
@@ -86,6 +91,7 @@ export default {
         pages.push(i)
       }
       return pages
+
     }
   },
   watch: {
