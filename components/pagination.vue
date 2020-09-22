@@ -4,7 +4,6 @@
       <button
         class="pagination_prev text-center bg-transparent  text-blue-700 font-semibold  py-2 px-4 border border-blue-700 rounded "
         v-if="localPage !== 1"
-        :class="'pagination_end_page'"
         :disabled="localPage === 1"
         @click="setPage(1)"
       >

@@ -2,7 +2,7 @@
   <section class="w-full text-gray-700 body-font">
     <h1 class="text-2xl font-semibold uppercase text-center py-10">Nekretnine</h1>
     <div class="container px-6 mx-auto">
-      <div class="flex flex-wrap -m-4">
+      <div class="flex flex-wrap -m-3">
         <div class="p-4 md:w-1/2 lg:w-1/3 sm:w-1/1 w-full" v-for="house in houses" :key="house.id"
              v-if="house.cover && house.cover.id">
           <div class="h-full border-2 border-gray-200 rounded-lg overflow-hidden">
@@ -94,10 +94,7 @@ export default {
   },
 
   methods: {
-    mouseOver: function(){
-      this.active = !this.active;
 
-    },
     singlePage(house) {
       this.$router.push(`/about/${house.id}`)
     },

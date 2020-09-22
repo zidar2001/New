@@ -6,6 +6,9 @@
 */
 module.exports = {
   theme: {
+    // listStyleType: {
+    //   disc: 'disc',
+    // },
     objectPosition: {
       bottom: 'bottom',
       center: 'center',

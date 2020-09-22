@@ -3,13 +3,13 @@
     <div class="container mx-auto justify-items-center flex flex-wrap p-5 flex-col md:flex-row items-center ">
       <nuxt-link to="/" class="flex title-font font-medium items-center text-gray-900 mb-4 sm:text-xs md:mb-0 inline-block">
         <svg stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-             class="w-10 h-10 p-2 bg-green-600 rounded-full" viewBox="0 0 24 24">
+             class="w-10 h-10 p-2  bg-green-600 rounded-full" viewBox="0 0 24 24">
           <path
             d="M 12 3 L 2 12 h 3 v 8 h 6 v -6 h 2 v 6 h 6 v -8 h 3 L 12 3 Z m 5 15 h -2 v -6 H 9 v 6 H 7 v -7.81 l 5 -4.5 l 5 4.5 V 18 Z"></path>
         </svg>
       </nuxt-link>
       <nuxt-link to="/" class="mt-1">
-        <span class="m-1">Home</span>
+        <span class="m-2">Home</span>
       </nuxt-link>
 
 
