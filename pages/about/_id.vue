@@ -1,5 +1,6 @@
 <template>
   <div>
+    <button @click="$router.back()">back</button>
     <div class="bg-gray-600 ">
       <div class="container mx-auto flex items-end pb-8" style="height:350px">
         <div class="w-1/4"></div>
