@@ -14,3 +14,8 @@ export default {
   }
 }
 </script>
+<style>
+textarea:focus, button:focus{
+  outline: none;
+}
+</style>

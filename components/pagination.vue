@@ -32,19 +32,21 @@
       >
         Dalje
       </button>
+
       <button
         class="pagination_prev text-center bg-transparent  text-blue-700 font-semibold  py-2 px-4 border border-blue-700 rounded"
         v-if="localPage !== lastPage"
         :disabled="localPage === lastPage"
         @click="setPage(lastPage)"
       >
-        75
+        {{ this.lastPage }}
       </button>
   </div>
   </div>
 
 </template>
 <script>
+
 export default {
   props: {
     value: {

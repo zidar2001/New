@@ -6,8 +6,8 @@ export default {
   */
 
     loading: {
-      color: 'red',
-      height: '5px'
+      color: '#ed64a6',
+      height: '3px'
   },
   mode: 'universal',
   /*
@@ -27,7 +27,7 @@ export default {
       { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+       { rel: 'icon', type: 'image/x-icon', href: 'https://dixonpestcontrol.com/wp-content/uploads/2017/10/house-icon.png' },
       { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Roboto+Slab&family=Work+Sans:wght@300&display=swap' }
     ]
   },

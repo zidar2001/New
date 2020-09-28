@@ -1,6 +1,5 @@
 <template>
   <div>
-    <button @click="$router.back()">back</button>
     <div class="bg-gray-600 ">
       <div class="container mx-auto flex items-end pb-8" style="height:350px">
         <div class="w-1/4"></div>
@@ -49,6 +48,7 @@ export default {
   async mounted() {
     try {
       let res = await axios.get(`http://homehapp-api.jsteam.gaussx.com/api/home/${this.$route.params.id}`)
+      console.log(res)
       this.house = res.data.data
       console.log(this.house)
       //this.isHydrated=true

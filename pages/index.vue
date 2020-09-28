@@ -1,62 +1,76 @@
 <template>
 
   <section class="w-full text-gray-700 body-font ">
-    <!--    <h1 class="text-2xl font-semibold uppercase text-center py-10">Nekretnine</h1>-->
     <div class="container px-6 mx-auto pb-4 pt-4  ">
       <div class="flex justify-between ">
         <div>
           <button
-            :class="!activeBtnBuy ? 'text-grey font-bold py-1 px-5 border-2 border-green-600 bg-blue-400 rounded-lg' : 'text-grey border-2 border-green-600 rounded-lg font-bold py-1 px-5 border-2 '"
-            @click="filterByBuy(1 )">Buy
+            :class="activeBtnBuyRent ? 'text-grey font-bold py-1 px-5 border-2 border-green-600 bg-blue-200 rounded-lg' : 'text-grey border-2 border-green-600 rounded-lg font-bold py-1 px-5 border-2 '"
+            @click="filterByBuy(1)">Buy
           </button>
           <button
-            :class=" activeBtnBuy ? 'text-grey font-bold py-1 px-5 border-2 border-green-600 bg-blue-400 rounded-lg' : 'text-grey border-2 border-green-600 rounded-lg font-bold py-1 px-5 border-2 '"
+            :class=" !activeBtnBuyRent ? 'text-grey font-bold py-1 px-5 border-2 border-green-600 bg-blue-200 rounded-lg' : 'text-grey border-2 border-green-600 rounded-lg font-bold py-1 px-5 border-2 '"
             @click="filterByRent(2)"
           >Rent
           </button>
         </div>
 
         <div>
-          <input class=" w-64 h-8 pl-4 border-2 border-gray-900 rounded-lg " v-model="searchText" type="text"
-                 placeholder="Search" @input="getHouses"/>
+          <label>
+            <input class=" w-64 h-8 pl-4 border-2 border-gray-900 rounded-lg " v-model="searchText" type="text"
+                   placeholder="Search" @input="getHouses"/>
+          </label>
         </div>
-        <div>
-          <button class="mb-2 text-lg border-2 border-green-600 rounded-lg pl-4 pr-4 hover:bg-green-200 "
+        <div class="mx-8">
+          <button class="mb-2 text-lg border-2 border-green-600 rounded-lg pl-4 pr-4 hover:bg-blue-200 "
                   v-model="filter" @click="changeStatement">Filter
           </button>
-          <div class="pt-4 pb-4  absolute mt-1 border-2 border-teal-300 bg-white -mx-24 pl-12  pr-16 z-10 "
-               v-if="filter">
-            <div class="flex pt-16 space-x-4 ml-5">
-              <div class="flex px-1 py-1  border-2 rounded">
-                <button class="rounded-full pr-3 bg-gray-300 hover:bg-blue-400 pl-3 border-3">-</button>
-                <div class="p-1">button1</div>
-                <button class="rounded-full hover:bg-blue-400 pr-3 bg-gray-300 pl-3 border-3">+</button>
-              </div>
-              <div class="flex px-1 py-1  border-2 rounded">
-                <button class="hover:bg-blue-400 rounded-full pr-3 bg-gray-300 pl-3 border-3">-</button>
-                <div class="p-1">button2</div>
-                <button class="hover:bg-blue-400 rounded-full pr-3 bg-gray-300 pl-3 border-3">+</button>
-              </div>
+        </div>
+        <div class="pt-4 pb-4   absolute mt-12 border-2 border-teal-400 bg-white right-0 pl-16  pr-16 z-10 "
+             v-if="filter">
+          <div class="pl-16 ml-64 pt-4">
+            <button @click="changeStatement" class="hover:bg-gray-400 border-2 rounded-full bg-gray-200">
+              <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
+                <path d="M0 0h24v24H0z" fill="none"/>
+                <path
+                  d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+              </svg>
+            </button>
+          </div>
+          <div class="flex-wrap pt-8 space-x-20 ">
+          <span class="">Bedrooms:</span>
+          <span class="">Bathrooms:</span>
+        </div>
+          <div class="flex pt-2 space-x-12 ml-4">
+            <div class="shadow-md flex px-1 py-1  border-2 border-green-600 rounded">
+              <button class="rounded-full pr-3 bg-gray-300 hover:bg-blue-300 pl-3 border-3"
+                      @click="decreaseNumberOfBedrooms">-
+              </button>
+              <div class="p-1 pl-4 pr-4">{{ bedrooms }}</div>
+              <button class=" rounded-full hover:bg-blue-300 pr-3 bg-gray-300 pl-3 border-3"
+                      @click="increaseNumberOfBedrooms">+
+              </button>
             </div>
-            <div class="flex pl-4 space-x-10 pt-32">
-              <button>RESET</button>
-              <button>CANCEL</button>
-              <button>SHOW RESULTS</button>
+            <div class="shadow-md flex px-1 py-1  border-2 border-green-600 rounded">
+              <button class=" hover:bg-blue-300 rounded-full pr-3 bg-gray-300 pl-3 border-3"
+                      @click="decreaseNumberOfBathrooms">-
+              </button>
 
+              <div class="p-1  pl-4 pr-4">{{ bathrooms }}</div>
+              <button class=" hover:bg-blue-300 rounded-full pr-3 bg-gray-300 pl-3 border-3"
+                      @click="increaseNumberOfBathrooms">+
+              </button>
             </div>
           </div>
-
+          <div class="flex pl-12 space-x-10 pt-32">
+            <button class="no-underline border-2 rounded-lg p-2 border-green-300 shadow-md hover:bg-green-300" @click="reset">RESET</button>
+            <button  class="no-underline border-2 rounded-lg p-2 border-green-300 shadow-md hover:bg-green-300" @click="changeStatement">SHOW RESULTS</button>
+          </div>
         </div>
-
-
-        <!--      <div>-->
-        <!--        <button @click="openBtn()">filter</button>-->
-        <!--        <div style="display: none" class="filter-btn">bedrooms</div>-->
-        <!--        <div style="display: none" class="filter-btn">bathrooms</div>-->
-        <!--      </div>-->
       </div>
     </div>
-    <div :class="!filter ? 'bg-gray-200 ' : 'bg-gray-500 opacity-25'">
+
+    <div :class="filter ? 'bg-gray-500 opacity-25 ' : 'bg-gray-200'">
       <div class="container px-6 mx-auto ">
         <div class="flex flex-wrap -m-3">
           <div class="p-4 md:w-1/2 lg:w-1/3 sm:w-1/1 w-full" v-for="house in houses" :key="house.id"
@@ -124,6 +138,8 @@
     </div>
     <pagination class="mt-4" :debounce="300" @input="setPage" :value="localPagination.page"
                 :last-page="localPagination.lastPage"/>
+
+
   </section>
 
 </template>
@@ -131,74 +147,58 @@
 <script>
 import axios from 'axios'
 import pagination from "@/components/pagination";
+import Navigation from "@/components/navigation";
 
 export default {
 
   components: {
+    Navigation,
     pagination
   },
   data() {
     return {
       active: false,
       houses: [],
-      activeBtnBuy: false,
-      // filter: this.$route.query.filter,
+      activeBtnBuyRent: true,
+      bedrooms: this.$route.query.bedrooms || 0,
+      bathrooms: this.$route.query.bathrooms || 0,
       filter: false,
       listingTypes: this.$route.query.listingTypes || 1,
-      searchText: this.$route.query.searchText || '',
+      searchText: this.$route.query.searchText,
       localPagination: {
-        page: this.$route.query.pagination || 1,
+        page: this.$route.query.page || 1,
       },
-      query: {}
+
     }
 
   },
 
-
   async mounted() {
-    this.getHouses()
+    await this.getHouses()
   },
   watch: {
     searchText() {
-      this.$router.push({path: this.$route.fullPath, query: {search: this.searchText || undefined}})
-
+      this.$router.push({path: this.$route.fullPath, query: {searchText: this.searchText || undefined}})
     }
   },
   methods: {
     changeStatement() {
       this.filter = !this.filter
     },
-    // openBtn(filter) {
-    //   const elementi = document.getElementsByClassName("filter-btn")
-    //   this.$router.push({path: this.$route.fullPath, query: {filter: this.openBtn}})
-    //   this.filter=filter
-    //   console.log(filter)
-    //
-    //   for (let element of elementi) {
-    //     if (element.style.display === 'none') {
-    //       element.style.display = 'block';
-    //     } else {
-    //       element.style.display = 'none';
-    //     }
-    //   }
-    //
-    // },
     singlePage(house) {
       this.$router.push(`/about/${house.id}`)
     },
-    filterByBuy(listingTypes){
-      if(this.activeBtnBuy){
-        this.activeBtnBuy =!this.activeBtnBuy
+    filterByBuy(listingTypes) {
+      if (!this.activeBtnBuyRent) {
+        this.activeBtnBuyRent = !this.activeBtnBuyRent
         this.houseRentOrBuy(listingTypes)
       }
-
     },
-    filterByRent(listingTypes){
-      if(!this.activeBtnBuy){
-        this.activeBtnBuy =!this.activeBtnBuy
+    filterByRent(listingTypes) {
+      if (this.activeBtnBuyRent) {
+        this.activeBtnBuyRent = !this.activeBtnBuyRent
         this.houseRentOrBuy(listingTypes)
       }
-
     },
     houseRentOrBuy(listingTypes) {
       this.$router.push({path: this.$route.fullPath, query: {listingTypes}})
@@ -209,6 +209,50 @@ export default {
       this.$router.push({path: this.$route.fullPath, query: {page}})
       this.localPagination.page = page
       this.getHouses()
+
+    },
+
+    increaseNumberOfBedrooms() {
+      this.bedrooms++
+      this.$router.push({path: this.$route.fullPath, query: {bedrooms: this.bedrooms}})
+      this.getHouses()
+    },
+    decreaseNumberOfBedrooms() {
+      if (this.bedrooms > 0) {
+        this.bedrooms--
+
+      }
+      if (this.bedrooms >= 1) {
+        this.$router.push({path: this.$route.fullPath, query: {bedrooms: this.bedrooms}})
+        this.getHouses()
+      } else {
+        this.$router.push({path: this.$route.fullPath, query: {bedrooms: undefined}})
+      }
+
+    },
+    increaseNumberOfBathrooms() {
+      console.log()
+      this.bathrooms++
+      this.$router.push({path: this.$route.fullPath, query: {bathrooms: this.bathrooms}})
+      this.getHouses()
+    },
+    decreaseNumberOfBathrooms() {
+      if (this.bathrooms > 0) {
+        this.bathrooms--
+      }
+      if (this.bathrooms >= 1) {
+        this.$router.push({path: this.$route.fullPath, query: {bathrooms: this.bathrooms}})
+        this.getHouses()
+      } else {
+        this.$router.push({path: this.$route.fullPath, query: {bathrooms: undefined}})
+      }
+
+    },
+    reset() {
+      this.bedrooms = 0
+      this.bathrooms = 0
+      this.$router.push({path: this.$route.fullPath, query: {bedrooms: undefined, bathrooms: undefined}})
+      this.getHouses()
     },
     async getHouses() {
       try {
@@ -217,6 +261,8 @@ export default {
             page: this.localPagination.page,
             listingTypes: this.listingTypes,
             searchText: this.searchText,
+            bedrooms: this.bedrooms,
+            bathrooms: this.bathrooms,
 
           }
         })

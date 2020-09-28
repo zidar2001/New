@@ -9,7 +9,7 @@
         </svg>
       </nuxt-link>
       <nuxt-link to="/" class="mt-1">
-        <span class="m-2">Home</span>
+        <span class="m-2 hover:text-gray-900">Home</span>
       </nuxt-link>
 
 
@@ -35,3 +35,13 @@
     </div>
   </header>
 </template>
+<script>
+export default {
+  mounted() {
+    this.$nextTick(() => {
+      this.$nuxt.$loading.start()
+      setTimeout(() => this.$nuxt.$loading.finish(), 1500)
+    })
+  },
+}
+</script>
