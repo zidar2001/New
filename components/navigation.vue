@@ -1,7 +1,7 @@
 <template>
   <header class="text-gray-700 body-font sm:rounded-t text-blue-600 font-semibold  py-3 px-4 border-2 border-blue-200 rounded">
     <div class="container mx-auto justify-items-center flex flex-wrap p-5 flex-col md:flex-row items-center ">
-      <nuxt-link to="/" class="flex title-font font-medium items-center text-gray-900 mb-4 sm:text-xs md:mb-0 inline-block">
+      <nuxt-link to="/" class="flex title-font font-medium items-center text-gray-900 mb-4 sm:text-xs md:mb-0 inline-block" >
         <svg stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
              class="w-10 h-10 p-2  bg-green-600 rounded-full" viewBox="0 0 24 24">
           <path
@@ -9,7 +9,7 @@
         </svg>
       </nuxt-link>
       <nuxt-link to="/" class="mt-1">
-        <span class="m-2 hover:text-gray-900">Home</span>
+        <span class="m-2 hover:text-gray-900" @click="emits">Home</span>
       </nuxt-link>
 
 
@@ -37,11 +37,17 @@
 </template>
 <script>
 export default {
+ methods:{
+   emits(){
+     this.$emit('homeBtn')
+   }
+ },
   mounted() {
     this.$nextTick(() => {
       this.$nuxt.$loading.start()
       setTimeout(() => this.$nuxt.$loading.finish(), 1500)
     })
   },
+
 }
 </script>
