@@ -141,7 +141,7 @@ export default {
 }
 .des{
   width: 60%;
-  margin-left: 23.5rem;
+  margin-left: 27.5rem;
   margin-top: -8rem;
 }
 .description{
